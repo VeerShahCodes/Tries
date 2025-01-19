@@ -41,10 +41,11 @@ namespace Tries
 
         public bool Contains(string word)
         {
-
+            if (SearchNode(word) != null) return true;
+            return false;
         }
 
-        public TrieNode SearchNode(string word)
+        private TrieNode SearchNode(string word)
         {
             TrieNode Current = Head;
             bool idk = true;

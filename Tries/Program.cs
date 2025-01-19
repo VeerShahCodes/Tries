@@ -12,7 +12,7 @@
             trie.Insert("Apple");
             trie.Insert("App");
             trie.Insert("Happiness");
-            TrieNode node = trie.SearchNode("Happiness");
+            bool test = trie.Contains("d;fkjksdfj");
             ;
         }
     }
