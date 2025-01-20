@@ -12,7 +12,8 @@
             trie.Insert("Apple");
             trie.Insert("App");
             trie.Insert("Happiness");
-            bool test = trie.Contains("d;fkjksdfj");
+            trie.Remove("App");
+            Console.WriteLine(trie.Contains("App"));
             ;
         }
     }

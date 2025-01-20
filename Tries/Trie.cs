@@ -48,10 +48,10 @@ namespace Tries
         private TrieNode SearchNode(string word)
         {
             TrieNode Current = Head;
-            bool idk = true;
+            bool isInOtherWord = true;
             for (int i = 0; i < word.Length; i++)
             {
-                if (Current.Children.ContainsKey(word[i]) && idk == true)
+                if (Current.Children.ContainsKey(word[i]) && isInOtherWord == true)
                 {
                     Current = Current.Children[word[i]];
                 }
@@ -64,13 +64,23 @@ namespace Tries
 
 
             }
-            return Current;
+            if (Current.IsWord == true) return Current;
+            return null;
+    
+
+        }
+        //public List<string> GetAllMatchingPrefix(string prefix);
+
+        public bool Remove(string prefix)
+        {
+            TrieNode current = SearchNode(prefix);
+            if (current == null) return false;
+            current.IsWord = false;
+            return true;
 
         }
     }
 
-        //public List<string> GetAllMatchingPrefix(string prefix);
 
-        //public bool Remove(string prefix);
     
 }
