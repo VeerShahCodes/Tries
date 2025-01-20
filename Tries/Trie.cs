@@ -69,7 +69,32 @@ namespace Tries
     
 
         }
-        //public List<string> GetAllMatchingPrefix(string prefix);
+        public List<string> GetAllMatchingPrefix(string prefix)
+        {
+            TrieNode current = Head;
+            foreach(Char c in prefix)
+            {
+                if(!current.Children.ContainsKey(c))
+                {
+                    return new List<string>();
+                }
+                current = current.Children[c];
+            }
+            return GetWordsFromNode(current, prefix);
+        }
+        private List<string> GetWordsFromNode(TrieNode node, string prefix)
+        {
+            List<string> words = new List<string>();
+            if (node.IsWord)
+            {
+                words.Add(prefix);
+            }
+            foreach (var item in node.Children)
+            {
+                words.AddRange(GetWordsFromNode(item.Value, prefix + item.Key));
+            }
+            return words;
+        }
 
         public bool Remove(string prefix)
         {
